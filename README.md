@@ -2,6 +2,7 @@
 
 This is a simple CLI program to manage a student roster and their grades. It was created for my Computer Science 101 course, and follows the assignment critera below.
 
+
 ## Assignment Prompt
 Design and implement an application to input, change, and display a college class of
 student grades. The main data structures should include 2 parallel ArrayList’s:
