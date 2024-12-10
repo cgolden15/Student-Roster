@@ -3,17 +3,17 @@ import java.util.ArrayList;
 
 
 public class StudentRoster {
+
     public static void main(String[] args) {
-        boolean run = true;
 
         ArrayList<String> studentList = new ArrayList<>();
-        ArrayList<Integer> gradeList = new ArrayList<>();
-        initializeRoster(studentList, gradeList);
+        ArrayList<Double> gradeList = new ArrayList<>();
+        initializeRoster(studentList, gradeList); // default students in roster
 
 
         System.out.println("Welcome to your student roster!");
 
-
+        boolean run = true;
         while (run) {
             String choice = menu();
 
@@ -63,17 +63,17 @@ public class StudentRoster {
      * @param studentList
      * @param gradeList
      */
-    public static void initializeRoster(ArrayList<String> studentList, ArrayList<Integer> gradeList) {
+    public static void initializeRoster(ArrayList<String> studentList, ArrayList<Double> gradeList) {
         studentList.add("Joe");
-        gradeList.add(98);
+        gradeList.add(98.5);
         studentList.add("John");
-        gradeList.add(99);
+        gradeList.add(99.2);
         studentList.add("Steve");
-        gradeList.add(78);
+        gradeList.add(78.9);
         studentList.add("Mike");
-        gradeList.add(87);
+        gradeList.add(87.5);
         studentList.add("Luke");
-        gradeList.add(88);
+        gradeList.add(88.7);
     }
 
     public static String menu() {
@@ -107,7 +107,7 @@ public class StudentRoster {
      * @param studentList array holding the list of student names
      * @param gradeList array holding the list of student grades
      */
-    public static void printRoster(ArrayList<String> studentList, ArrayList<Integer> gradeList) {
+    public static void printRoster(ArrayList<String> studentList, ArrayList<Double> gradeList) {
         for (int i = 0; i < studentList.size(); i++) {
             System.out.println(studentList.get(i) + "  - Grade: " + gradeList.get(i));
         }
@@ -121,7 +121,7 @@ public class StudentRoster {
      * @param gradeList
      * @param studentList
      */
-    public static void addStudent(ArrayList<String> studentList, ArrayList<Integer> gradeList) {
+    public static void addStudent(ArrayList<String> studentList, ArrayList<Double> gradeList) {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the name of the student: ");
@@ -131,7 +131,7 @@ public class StudentRoster {
             return;
         }
         System.out.println("Please enter the grade of the student: ");
-        Integer grade = scanner.nextInt();
+        Double grade = scanner.nextDouble();
         studentList.add(studentName);
         gradeList.add(grade);
         System.out.println("Student added!");
@@ -145,7 +145,7 @@ public class StudentRoster {
      * @param studentList
      * @param gradeList
      */
-    public static void updateStudent(ArrayList<String> studentList, ArrayList<Integer> gradeList) {
+    public static void updateStudent(ArrayList<String> studentList, ArrayList<Double> gradeList) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the name of the student you would like to update: ");
         String studentName = scanner.next();
@@ -153,7 +153,7 @@ public class StudentRoster {
         int index = studentList.indexOf(studentName);
         if(index != -1) {
             System.out.println("Please enter " + studentName + "'s new grade: ");
-            int grade = scanner.nextInt();
+            Double grade = scanner.nextDouble();
             gradeList.set(index, grade);
             System.out.println("Student updated!");
         } else {
@@ -169,7 +169,7 @@ public class StudentRoster {
      * @param studentList
      * @param gradeList
      */
-    public static void removeStudent(ArrayList<String> studentList, ArrayList<Integer> gradeList) {
+    public static void removeStudent(ArrayList<String> studentList, ArrayList<Double> gradeList) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the name of the student you would like to remove: ");
         String studentName = scanner.next();
@@ -191,13 +191,13 @@ public class StudentRoster {
      * @param studentList
      * @param gradeList
      */
-    private static void calculateGrade(ArrayList<String> studentList, ArrayList<Integer> gradeList) {
+    private static void calculateGrade(ArrayList<String> studentList, ArrayList<Double> gradeList) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter a students name: ");
         String studentName = scanner.next();
         int index = studentList.indexOf(studentName);
         if(index != -1) {
-            int percent = gradeList.get(index);
+            Double percent = gradeList.get(index);
             if (percent >= 90) { System.out.println("Student has an A, or a " + percent + "%"); }
             if (percent >= 80 && percent < 90) { System.out.println("Student has a B, or a " + percent + "%"); }
             if (percent >= 70 && percent < 80) { System.out.println("Student has a C, or a " + percent + "%"); }
@@ -208,8 +208,14 @@ public class StudentRoster {
         }
     }
 
-    private static void classAverage(ArrayList<Integer> gradeList) {
-        int totalgrade = 0;
+    /**
+     *
+     * Pulls all grades from gradeList and calculates the class average with them.
+     *
+     * @param gradeList
+     */
+    private static void classAverage(ArrayList<Double> gradeList) {
+        Double totalgrade = 0.0;
         for (int i = 0; i < gradeList.size(); i++) {
             totalgrade += gradeList.get(i);
         }
@@ -218,7 +224,14 @@ public class StudentRoster {
         System.out.println("Average grade: " + average + "%");
     }
 
-    private static void searchStudent(ArrayList<String> studentList, ArrayList<Integer> gradeList) {
+    /**
+     *
+     * Searches for a student by name, and returns their name and grade if valid.
+     *
+     * @param studentList
+     * @param gradeList
+     */
+    private static void searchStudent(ArrayList<String> studentList, ArrayList<Double> gradeList) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the name of the student: ");
         String studentName = scanner.next();
