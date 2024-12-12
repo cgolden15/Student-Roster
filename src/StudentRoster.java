@@ -76,6 +76,10 @@ public class StudentRoster {
         gradeList.add(88.7);
     }
 
+    /**
+     * Prompts the user to select from the available functions.
+     * @return - returns the selected menu option for case handling
+     */
     public static String menu() {
         System.out.println("\nPlease select an option from the following options by responding with its line number:");
         Scanner scanner = new Scanner(System.in);
